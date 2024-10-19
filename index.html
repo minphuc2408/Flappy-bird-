@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird with Hand Gesture</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./assets/css/reset.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <!-- js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose@latest"></script>
+</head>
+<body>
+    <div class="app">
+        <div id="overlay" class="overlay visible">
+            <div class="container heading">
+                <h1>Flappy bird with Hand Gesture</h1>
+                <button class="btn btn-start-game">
+                    <span>Start</span>
+                </button>
+            </div>
+        </div>
+    
+        <div class="tutorial hidden">
+            <div class="container">
+                <button class="btn btn-go">
+                    <span>Go</span>
+                </button>
+            </div>
+        </div>
+    
+        <div class="game-fla-bird hidden">
+            <canvas id="gameCanvas"></canvas>
+        </div>
+    </div>
+
+    <video id="video" width="640" height="360" autoplay hidden></video>
+    <canvas id="handCanvas" width="640" height="480" hidden></canvas>
+
+    <script type="module" src="./js/game1.js" autoplay defer></script>
+    <script type="module" src="./js/HandposeHandler.js" defer></script>
+    <script>
+        document.querySelector('.btn-start-game').addEventListener('click', function() {
+            document.querySelector('.overlay').classList.add('hidden');
+            document.querySelector('.overlay').classList.remove('visible');
+            document.querySelector('.tutorial').classList.remove('hidden');
+            document.querySelector('.tutorial').classList.add('visible');
+        });
+
+        document.querySelector('.btn-go').addEventListener('click', function() {
+            document.querySelector('.tutorial').classList.add('hidden');
+            document.querySelector('.tutorial').classList.remove('visible');
+            document.querySelector('.game-fla-bird').classList.remove('hidden');
+            document.querySelector('.game-fla-bird').classList.add('visible');
+        });
+    </script>
+</body>
+</html>
